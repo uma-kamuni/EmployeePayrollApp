@@ -2,6 +2,7 @@
 window.addEventListener('DOMContentLoaded',(event) => {
     salaryOutput();
     validateName();
+    validateDate();
 });
 
 const validateName = () => {
@@ -22,7 +23,6 @@ const validateName = () => {
     });
 }
 
-
 const salaryOutput = () => {
     const salary = document.querySelector('#salary');
     const output = document.querySelector('.salary-output');
@@ -30,6 +30,27 @@ const salaryOutput = () => {
     salary.addEventListener('input', function(){
         output.textContent = salary.value;
     });
+}
 
-    
+function validateDate() {
+    console.log("validating date");
+    const day = document.querySelector('#day');
+    const month = document.querySelector('#month');
+    const year = document.querySelector('#year');
+
+    day .addEventListener('input', checkDate);
+    month.addEventListener('input', checkDate);
+    year.addEventListener('input', checkDate)
+}
+
+function checkDate() {
+    console.log("checking date");
+    const dateError = document.querySelector('.date-error');
+    try {
+        let date = day.value + " " +month.value + " " + year.value;
+        (new EmployeePayrollData()).startDate = new Date(Date.parse(date));
+        dateError.textContent = " ";
+    } catch (e) {
+        dateError.textContent = e;
+    }
 }
