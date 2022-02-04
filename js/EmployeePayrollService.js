@@ -29,4 +29,6 @@ const salaryOutput = () => {
     salary.addEventListener('input', function(){
         output.textContent = salary.value;
     });
+
+    
 }
