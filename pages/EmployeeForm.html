@@ -3,30 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="shortcut icon" href="../assets/fav.png" />
+    <title>Employee payroll form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../CSS/EmployeeForm.css" />
-    <title>Employee Payroll Form</title>
+
+    <script type="text/javascript" src = "../JS/EmployeePayrollData.js" ></script>
+    <script type="text/javascript" src = "../JS/EmployeePayrollService.js"></script>
+    
   </head>
   <body>
-    <!-- UC 1 -->
     <header class="header-content header">
       <div class="logo-content">
-        <img src="..\Assets\images\logo.png" alt="logo" />
+        <img src="../assets/images/logo.png" alt="" />
         <div>
           <span class="emp-text">EMPLOYEE</span><br />
-          <span class="emp-text emp-payroll">PAYROLL</span>
+          <span class="emp-text emp-payroll">PAYROLL</span><br />
         </div>
       </div>
     </header>
-
-    <!-- UC 2 -->
     <div class="form-content">
-      <form class="form" action="#" onsubmit="save(event);return false">
-        <div class="form-head">Employee payroll form</div>
+      <form class="form" action="#" onsubmit="save();return false">
+        <div class="form-head">Employee Payroll Form</div>
         <div class="row-content">
           <label class="label text" for="name">Name</label>
           <input
@@ -34,11 +35,10 @@
             type="text"
             id="name"
             name="name"
-            placeholder="Your name..."
+            placeholder="Your name"
             required
           />
         </div>
-        <!--UC3 adding profile pics to pay roll form-->
         <div class="row-content">
           <label class="label text" for="profile">Profile Image</label>
           <div class="profile-radio-content">
@@ -47,13 +47,13 @@
                 type="radio"
                 id="profile1"
                 name="profile"
-                value="..\assets\profile-images\Ellipse -1.png"
+                value="../assets/profile-images/Ellipse -3.png"
                 required
               />
               <img
                 class="profile"
                 id="image1"
-                src="..\assets\profile-images\Ellipse -1.png"
+                src="../assets/profile-images/Ellipse -3.png"
               />
             </label>
             <label>
@@ -61,13 +61,13 @@
                 type="radio"
                 id="profile2"
                 name="profile"
-                value="..\assets\profile-images\Ellipse -2.png"
+                value="../assets/profile-images/Ellipse 1.png"
                 required
               />
               <img
                 class="profile"
                 id="image2"
-                src="..\assets\profile-images\Ellipse -2.png"
+                src="../assets/profile-images/Ellipse 1.png"
               />
             </label>
             <label>
@@ -75,13 +75,13 @@
                 type="radio"
                 id="profile3"
                 name="profile"
-                value="..\assets\profile-images\Ellipse -3.png"
+                value="../assets/profile-images/Ellipse -8.png"
                 required
               />
               <img
                 class="profile"
                 id="image3"
-                src="..\assets\profile-images\Ellipse -3.png"
+                src="../assets/profile-images/Ellipse -8.png"
               />
             </label>
             <label>
@@ -89,29 +89,26 @@
                 type="radio"
                 id="profile4"
                 name="profile"
-                value="..\assets\profile-images\Ellipse -4.png"
+                value="../assets/profile-images/Ellipse -7.png"
                 required
               />
               <img
                 class="profile"
                 id="image4"
-                src="..\assets\profile-images\Ellipse -4.png"
+                src="../assets/profile-images/Ellipse -7.png"
               />
             </label>
           </div>
         </div>
-        <!--UC4-->
-        <!--Adding gender to the form-->
         <div class="row-content">
           <label class="label text" for="gender">Gender</label>
           <div>
             <input type="radio" id="male" name="gender" value="male" />
             <label class="text" for="male">Male</label>
             <input type="radio" id="female" name="gender" value="female" />
-            <label class="text" for="male">Female</label>
+            <label class="text" for="female">Female</label>
           </div>
         </div>
-        <!--Adding department to the form-->
         <div class="row-content">
           <label class="label text" for="department">Department</label>
           <div>
@@ -157,37 +154,34 @@
             <label class="text" for="others">Others</label>
           </div>
         </div>
-
-        <!--Adding salary range to the form-->
         <div class="row-content">
-          <label class="label text" for="salary">Salary</label>
-          <div>
-            <select id="salary" name="Salary">
-              <option value="select">Select Salary</option>
-              <option value="100000">100000</option>
-              <option value="200000">200000</option>
-              <option value="300000">300000</option>
-              <option value="400000">400000</option>
-              <option value="500000">500000</option>
-              <option value="600000">600000</option>
-            </select>
-          </div>
+          <label class="label text" for="salary">Choose Your Salary</label>
+          <input
+            class="input"
+            type="range"
+            name="salary"
+            id="salary"
+            min="300000"
+            max="600000"
+            step="100"
+            value="400000"
+          />
+          <output class="salary-output text" for="salary">400000</output>
         </div>
-        <!--UC5 payroll form with start date-->
         <div class="row-content">
           <label class="label text" for="startDate">Start Date</label>
           <div>
             <select id="day" name="Day">
-              <option value="day">Day</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
+              <option value="Day">Day</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
               <option value="10">10</option>
               <option value="11">11</option>
               <option value="12">12</option>
@@ -212,22 +206,23 @@
               <option value="31">31</option>
             </select>
             <select id="month" name="Month">
-              <option value="month">Month</option>
-              <option value="Jan">January</option>
-              <option value="Feb">February</option>
-              <option value="March">March</option>
-              <option value="April">April</option>
-              <option value="May">May</option>
-              <option value="June">June</option>
-              <option value="July">July</option>
-              <option value="Aug">August</option>
-              <option value="Sept">September</option>
-              <option value="Oct">October</option>
-              <option value="Nov">November</option>
-              <option value="Dec">December</option>
+              <option value="Month">Month</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
             </select>
             <select id="year" name="Year">
-              <option value="year">Year</option>
+              <option value="Year">Year</option>
+              <option value="2022">2022</option>
               <option value="2021">2021</option>
               <option value="2020">2020</option>
               <option value="2019">2019</option>
@@ -235,6 +230,28 @@
               <option value="2017">2017</option>
               <option value="2016">2016</option>
             </select>
+          </div>
+        </div>
+        <div class="row-content">
+          <label class="label text" for="notes">Notes</label>
+          <textarea
+            id="notes"
+            class="input"
+            name="Notes"
+            style="height: 100px"
+          ></textarea>
+        </div>
+        <div class="buttonParent">
+          <a
+            href="./EmployeePayrollForm.html"
+            class="resetButton button cancelButton"
+            >Cancel</a
+          >
+          <div class="submit-reset">
+            <button type="submit" class="button submitButton" id="submitButton">
+              Submit
+            </button>
+            <button type="reset" class="resetButton button">Reset</button>
           </div>
         </div>
       </form>
