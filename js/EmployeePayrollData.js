@@ -78,6 +78,7 @@ class EmployeePayrollData {
         this._note = note;
     }
 
+    
     toString() {
         const options = {year: 'numeric', month: 'long', day: 'numeric'};
         const empDate = !startDate ? "undefined" : this.startDate.toLocateDateString("en-us",options);
