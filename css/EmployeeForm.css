@@ -198,6 +198,7 @@ error-output {
 }
 
 @media only screen and (max-width: 960px) {
+  
   .cancelButton {
       margin-left: 0px;
   }
