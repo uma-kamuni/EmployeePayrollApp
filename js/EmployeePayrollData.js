@@ -1,14 +1,11 @@
 class EmployeePayrollData {
-    constructor() {
-
-    }
 
     get id() {
         return this._id;
     }
 
     set id(id) {
-        this._id = id; 
+        this._id = id;
     }
 
     get name() {
@@ -16,22 +13,19 @@ class EmployeePayrollData {
     }
 
     set name(name) {
-        console.log(name);
-        let pattern = RegExp("^[A-Z]{1}[A-Za-z]{2,}$");
-        if(pattern.test(name)){
+        let nameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
+        if (nameRegex.test(name))
             this._name = name;
-        }
-        else{
-            throw "Incorrect Name";
-        }
+        else
+            throw "NAME is Incorrect";
     }
 
-    get profilePic(){
-        return this._profilePic;
+    get profileImage() {
+        return this._profileImage;
     }
 
-    set profilePic(profilePic) {
-        this._profilePic = profilePic;
+    set profileImage(profileImage) {
+        this._profileImage = profileImage;
     }
 
     get gender() {
@@ -54,40 +48,38 @@ class EmployeePayrollData {
         return this._salary;
     }
 
+    set salary(salary) {
+        this._salary = salary;
+
+    }
+
     get startDate() {
-       return this._startDate;
+        return this._startDate;
     }
 
     set startDate(startDate) {
-        let currentDate = new Date();
-        if(startDate > currentDate) {
-            throw "Start date is a future date";
+        var today = new Date();
+        const one_month_ago = new Date(today.setDate(today.getDate()-30));
+        today = new Date();
+        if(today < startDate || startDate < one_month_ago) {
+            throw 'Start date is invalid!';
         }
-        var diff = Math.abs(currentDate.getTime() - startDate.getTime());
-        if(diff / (1000*60*60*24) > 30) {
-            throw "start date is a beyond 30 days";
+        else {
+            this._startDate = startDate;
         }
-        this._startDate = startDate;
     }
 
-    get note() {
-        return this._note;
+    get notes() {
+        return this._notes;
     }
 
-    set note(note) {
-        this._note = note;
+    set notes(notes) {
+        this._notes = notes;
     }
 
     toString() {
-        const options = {year: 'numeric', month: 'long', day: 'numeric'};
-        const empDate = !startDate ? "undefined" : this.startDate.toLocateDateString("en-us",options);
-        return "id = " + this.id
-               + "name = " + this.name
-               + "gender = " + this.gender
-               + "profilePic = " + this.profilePic
-               + "department = " + this.department
-               + "salary = " + this.salary
-               + "startDate = " + empDate
-               + "note = " + this.note;
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const employeeDate = this.startDate == undefined ? "undefined" : this.startDate.toLocaleDateString("en-us", options);
+        return "Id = " + this.id + ", Name = " + this.name + ", Profile Image = " + this.profileImage + ", Gender = " + this.gender + ", Department = " + this.department + ", Salary = " + this.salary + ", Start Date = " + employeeDate + ", Notes = " + this.notes;
     }
 }
